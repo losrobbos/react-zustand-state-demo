@@ -6,5 +6,5 @@ export const useDataStore = create((set, get) => ({
   addTodo: (newTodo) => set((state) => ({ todos: [...state.todos, newTodo] })),
   increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
   removeAllBears: () => set({ bears: 0 }),
-  getStats: () => get().todos.length + get().bears
+  getStats: () => `Todos: ${get().todos.length}, Bears: ${get().bears}`
 }))

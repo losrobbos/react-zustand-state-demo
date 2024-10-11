@@ -1,13 +1,16 @@
-import { useDataStore } from "../Store";
+import { useShallow } from "zustand/shallow";
+import { useDataStore } from "../store";
 
 export default function Home() {
-  const bears = useDataStore((state) => state.bears)
-  const increasePopulation = useDataStore((state) => state.increasePopulation);
-  // const [bears, increasePopulation] = useDataStore(state => [state.bears, state.increasePopulation])
+  const [bears, increasePopulation] = useDataStore(
+    useShallow((state) => [state.bears, state.increasePopulation])
+  );
 
-  return <>
-    <h2>Home</h2>
-    <div>Bears count: {bears}</div>
-    <button onClick={increasePopulation}>Increase</button>
-  </>;
+  return (
+    <>
+      <h2>Home</h2>
+      <div>Bears count: {bears}</div>
+      <button onClick={increasePopulation}>Increase</button>
+    </>
+  );
 }
